@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tablinks1, .tablinks2, .tablinks3, .tablinks4, .tablinks5, .tablinks6, .tablinks7,.tablinks8{
+            background-color: inherit;
+            border: none;
+            outline: none;
+            padding: 14px 16px;
+            font-size: 17px;
+        }
+        .tablinks1:active, .tablinks2:active, .tablinks3:active, .tablinks4:active,
+        .tablinks5:active, .tablinks6:active, .tablinks7:active, .tablinks8:active{
+            color:rgba(58, 58, 185, 0.877);
+        }
+        .tablinks1:hover, .tablinks2:hover, .tablinks3:hover, .tablinks4:hover,
+        .tablinks5:hover, .tablinks6:hover, .tablinks7:hover, .tablinks8:hover{
+            cursor: pointer;
+            color:rgba(58, 58, 185, 0.877);
+        }
+        .ibutton1, .ibutton2, .ibutton3, .ibutton4, .ibutton5, .ibutton6, .ibutton7, .ibutton8,
+        .ibutton9, .ibutton10, .ibutton11, .ibutton12, .ibutton13, .ibutton14, .ibutton15, .ibutton16{
+            background-color: inherit;
+            padding: 6px 20px;
+            font-size: 12px;
+        }
+        .ibutton1:active, .ibutton2:active, .ibutton3:active, .ibutton4:active,
+        .ibutton5:active, .ibutton6:active, .ibutton7:active, .ibutton8:active,
+        .ibutton9:active, .ibutton10:active, .ibutton11:active, .ibutton12:active,
+        .ibutton13:active, .ibutton14:active, .ibutton15:active, .ibutton16:active{
+            color:rgba(58, 58, 185, 0.877);
+            box-shadow: none;
+            border: 1px solid blue;
+        }
+        .ibutton1:hover, .ibutton2:hover, .ibutton3:hover, .ibutton4:hover,
+        .ibutton5:hover, .ibutton6:hover, .ibutton7:hover, .ibutton8:hover,
+        .ibutton9:hover, .ibutton10:hover, .ibutton11:hover, .ibutton12:hover,
+        .ibutton13:hover, .ibutton14:hover, .ibutton15:hover, .ibutton16:hover{
+            cursor: pointer;
+            color:rgba(58, 58, 185, 0.877);
+            border: 1px solid blue;
+        }
+        .view{
+            color:blue;
+            cursor: pointer;
+            background-color: inherit;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            text-decoration: underline;
+        }
+        h1{
+            color:rgba(47, 47, 151, 0.877);
+            text-align: center;
+        }
+        table{
+            width:90%
+        }
+        table,th,td{
+            border:"";
+            border-collapse: collapse
+        }
+    </style>
+</head>
+<body>
+
+    <h1>STOCK ACTION</h1>
+    <table>
+        <tr>
+            <td>
+                <button class="tablinks1">Top Gainers</button>
+                <button class="tablinks2">Top Losers</button>
+            </td>
+            <td>
+                <button class="tablinks3">Only Buyers</button>
+                <button class="tablinks4">Only Sellers</button>
+            </td>
+            <td>
+                <button class="tablinks5">52 Week High</button>
+                <button class="tablinks6">52 Week Low</button>
+            </td>
+            <td>
+                <button class="tablinks7">Price Shockers</button>
+                <button class="tablinks8">Volume Shockers</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="ibutton1">BSE</button>
+                <button class="ibutton2">NSE</button> 
+                <button class="ibutton3">BSE</button>
+                <button class="ibutton4">NSE</button>   
+            </td>
+            <td>
+                <button class="ibutton5">BSE</button>
+                <button class="ibutton6">NSE</button>
+                <button class="ibutton7">BSE</button>
+                <button class="ibutton8">NSE</button>
+            </td>
+            <td>
+                <button class="ibutton9">BSE</button>
+                <button class="ibutton10">NSE</button>
+                <button class="ibutton11">BSE</button>
+                <button class="ibutton12">NSE</button>
+            </td>
+            <td>
+                <button class="ibutton13">BSE</button>
+                <button class="ibutton14">NSE</button>
+                <button class="ibutton15">BSE</button>
+                <button class="ibutton16">NSE</button>
+            </td>
+        </tr>
+        <td>
+            <div class='table1' id='BSE' >
+                {% if rec1 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Gain</th>
+                    </thead>
+                    {% for i in rec1 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_gain|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore1" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form> 
+            </div> 
+
+            <div id='NSE' class='table2' >
+                {% if rec2 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Gain</th>
+                    </thead>
+                    {% for i in rec2 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_gain|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore2" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>         
+                
+            <div id="BSE" class='table3'>
+                {% if rec3 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Loss</th>
+                    </thead>
+                    {% for i in rec3 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_loss|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore3" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id='NSE' class='table4' >
+                {% if rec4 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Loss</th>
+                    </thead>
+                    {% for i in rec4 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_loss|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore4" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+        </td> 
+
+        <td>
+            <div id="BSE" class='table5' >
+                {% if rec5 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Chg</th>
+                    </thead>
+                    {% for i in rec5 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_chng|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore5" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="NSE" class='table6' >
+                {% if rec6 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Chg</th>
+                    </thead>
+                    {% for i in rec6 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_chng|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore6" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="BSE" class='table7' >
+                {% if rec7 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Chg</th>
+                    </thead>
+                    {% for i in rec7 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_chng|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore7" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="NSE" class='table8'>
+                {% if rec8 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Chg</th>
+                    </thead>
+                    {% for i in rec8 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_chng|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore8" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+        </td>
+
+        <td>
+            <div id="BSE" class='table9'>
+                {% if rec9 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Days High</th>
+                        <th style="text-align: right">Current</th>
+                    </thead>
+                    {% for i in rec9 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.todays_high|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore9" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="NSE" class='table10'>
+                {% if rec10 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Days High</th>
+                        <th style="text-align: right">Current</th>
+                    </thead>
+                    {% for i in rec10 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.todays_high|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>                          
+                {% endif %}
+                <br>
+                <form action="viewmore10" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="BSE" class='table11'>
+                {% if rec11 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Days Low</th>
+                        <th style="text-align: right">Current</th>
+                    </thead>
+                    {% for i in rec11 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.todays_high|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore11" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="NSE" class='table12'>
+                {% if rec12 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Days Low</th>
+                        <th style="text-align: right">Current</th>
+                    </thead>
+                    {% for i in rec12 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.todays_high|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.last_price|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore12" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+        </td>
+        
+        <td>
+            <div id="BSE" class='table13'>
+                {% if rec13 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Chg</th>
+                    </thead>
+                    {% for i in rec13 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.current_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_chng|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore13" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="NSE" class='table14'>
+                {% if rec14 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Current</th>
+                        <th style="text-align: right">% Chg</th>
+                    </thead>
+                    {% for i in rec14 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.current_price|floatformat:2 }}</td>
+                        <td style="text-align: right">{{ i.perc_chng|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore14" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="BSE" class='table15'>
+                {% if rec15 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Avg Volume</th>
+                        <th style="text-align: right">% Vol Chg</th>
+                    </thead>
+                    {% for i in rec15 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.avg_volume }}</td>
+                        <td style="text-align: right">{{ i.perc_chng2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore15" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+
+            <div id="NSE" class='table16'>
+                {% if rec16 %}
+                <table style="width:90%">
+                    <thead style="text-align: left">
+                        <th>Company</th>
+                        <th style="text-align: right">Avg Volume</th>
+                        <th style="text-align: right">% Vol Chg</th>
+                    </thead>
+                    {% for i in rec16 %}
+                    <tr>
+                        <td>{{ i.company_name }}</td>
+                        <td style="text-align: right">{{ i.avg_volume }}</td>
+                        <td style="text-align: right">{{ i.perc_chng2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>NO RECORD FOUND</p>
+                {% endif %}
+                <br>
+                <form action="viewmore16" target="_blank" style="text-align:center">
+                    <button class='view'> View More </button>
+                </form>
+            </div>
+        </td>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function(){
+        $('.ibutton3').hide();
+        $('.ibutton4').hide();
+        $('.ibutton7').hide();
+        $('.ibutton8').hide();
+        $('.ibutton11').hide();
+        $('.ibutton12').hide();
+        $('.ibutton15').hide();
+        $('.ibutton16').hide();
+        $('.table2').hide();
+        $('.table3').hide();
+        $('.table4').hide();
+        $('.table6').hide();
+        $('.table7').hide();
+        $('.table8').hide();
+        $('.table10').hide();
+        $('.table11').hide();
+        $('.table12').hide();
+        $('.table14').hide();
+        $('.table15').hide();
+        $('.table16').hide();
+        //Section1
+        $(".tablinks1").click(function(e){
+            $('.ibutton1').show();
+            $('.ibutton2').show();
+            $('.ibutton3').hide();
+            $('.ibutton4').hide();
+            $('.table1').show();
+            $('.table2').hide();
+            $('.table3').hide();
+            $('.table4').hide();
+        });
+        $(".tablinks2").click(function(e){
+            $('.ibutton1').hide();
+            $('.ibutton2').hide();
+            $('.ibutton3').show();
+            $('.ibutton4').show();
+            $('.table1').hide();
+            $('.table2').hide();
+            $('.table3').show();
+            $('.table4').hide();
+        });
+        //Section2
+        $(".tablinks3").click(function(e){
+            $('.ibutton5').show();
+            $('.ibutton6').show();
+            $('.ibutton7').hide();
+            $('.ibutton8').hide();
+            $('.table5').show();
+            $('.table6').hide();
+            $('.table7').hide();
+            $('.table8').hide();
+        });
+        $(".tablinks4").click(function(e){
+            $('.ibutton5').hide();
+            $('.ibutton6').hide();
+            $('.ibutton7').show();
+            $('.ibutton8').show();
+            $('.table5').hide();
+            $('.table6').hide();
+            $('.table7').show();
+            $('.table8').hide();
+        });
+        //Section3
+        $(".tablinks5").click(function(e){
+            $('.ibutton9').show();
+            $('.ibutton10').show();
+            $('.ibutton11').hide();
+            $('.ibutton12').hide();
+            $('.table9').show();
+            $('.table10').hide();
+            $('.table11').hide();
+            $('.table12').hide();
+        });
+        $(".tablinks6").click(function(e){
+            $('.ibutton9').hide();
+            $('.ibutton10').hide();
+            $('.ibutton11').show();
+            $('.ibutton12').show();
+            $('.table9').hide();
+            $('.table10').hide();
+            $('.table11').show();
+            $('.table12').hide();
+        });
+        //Section4
+        $(".tablinks7").click(function(e){
+            $('.ibutton13').show();
+            $('.ibutton14').show();
+            $('.ibutton15').hide();
+            $('.ibutton16').hide();
+            $('.table13').show();
+            $('.table14').hide();
+            $('.table15').hide();
+            $('.table16').hide();
+        });
+        
+        $(".tablinks8").click(function(e){
+            $('.ibutton13').hide();
+            $('.ibutton14').hide();
+            $('.ibutton15').show();
+            $('.ibutton16').show();
+            $('.table13').hide();
+            $('.table14').hide();
+            $('.table15').show();
+            $('.table16').hide();
+        });
+        //table1
+        $(".ibutton1").click(function(e){
+            $('.table1').show();
+            $('.table2').hide();
+            $('.table3').hide();
+            $('.table4').hide();
+        });
+        //table2
+        $(".ibutton2").click(function(e){
+            $('.table1').hide();
+            $('.table2').show();
+            $('.table3').hide();
+            $('.table4').hide();
+        });
+        //table3
+        $(".ibutton3").click(function(e){
+            $('.table1').hide();
+            $('.table2').hide();
+            $('.table3').show();
+            $('.table4').hide();
+        });
+        //table4
+        $(".ibutton4").click(function(e){
+            $('.table1').hide();
+            $('.table2').hide();
+            $('.table3').hide();
+            $('.table4').show();
+        });
+        //table5
+        $(".ibutton5").click(function(e){
+            $('.table5').show();
+            $('.table6').hide();
+            $('.table7').hide();
+            $('.table8').hide();
+        });
+        //table6
+        $(".ibutton6").click(function(e){
+            $('.table5').hide();
+            $('.table6').show();
+            $('.table7').hide();
+            $('.table8').hide();
+        });
+        //table7
+        $(".ibutton7").click(function(e){
+            $('.table5').hide();
+            $('.table6').hide();
+            $('.table7').show();
+            $('.table8').hide();
+        });
+        //table8
+        $(".ibutton8").click(function(e){
+            $('.table5').hide();
+            $('.table6').hide();
+            $('.table7').hide();
+            $('.table8').show();
+        });
+        //table9
+        $(".ibutton9").click(function(e){
+            $('.table9').show();
+            $('.table10').hide();
+            $('.table11').hide();
+            $('.table12').hide();
+        });
+        //table10
+        $(".ibutton10").click(function(e){
+            $('.table9').hide();
+            $('.table10').show();
+            $('.table11').hide();
+            $('.table12').hide();
+        });
+        //table11
+        $(".ibutton11").click(function(e){
+            $('.table9').hide();
+            $('.table10').hide();
+            $('.table11').show();
+            $('.table12').hide();
+        });
+        //table12
+        $(".ibutton12").click(function(e){
+            $('.table9').hide();
+            $('.table10').hide();
+            $('.table11').hide();
+            $('.table12').show();
+        });
+        //table13
+        $(".ibutton13").click(function(e){
+            $('.table13').show();
+            $('.table14').hide();
+            $('.table15').hide();
+            $('.table16').hide();
+        });
+        //table14
+        $(".ibutton14").click(function(e){
+            $('.table13').hide();
+            $('.table14').show();
+            $('.table15').hide();
+            $('.table16').hide();
+        });
+        //table15
+        $(".ibutton15").click(function(e){
+            $('.table13').hide();
+            $('.table14').hide();
+            $('.table15').show();
+            $('.table16').hide();
+        });
+        //table16
+        $(".ibutton16").click(function(e){
+            $('.table13').hide();
+            $('.table14').hide();
+            $('.table15').hide();
+            $('.table16').show();
+        });
+    });
+    </script>
+</body>
+</html>
